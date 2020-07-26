@@ -1,8 +1,5 @@
-package lmarek.stv.stv.election;
+package lmarek.stv.stv.user;
 
-import lmarek.stv.stv.user.PrivilegeEntity;
-import lmarek.stv.stv.user.UserEntity;
-import lmarek.stv.stv.user.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
