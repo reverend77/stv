@@ -1,5 +1,6 @@
 package lmarek.stv.stv.vote;
 
+import lmarek.stv.stv.voter.VoterEntity;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,5 +16,8 @@ public class VoteEntity {
 
     @OneToMany(mappedBy = "vote", fetch = FetchType.EAGER)
     private Set<VotePreferenceEntity> preferences;
+
+    @ManyToOne
+    private VoterEntity voter;
 
 }
