@@ -14,7 +14,7 @@ public class VotePreferenceEntity {
     @GeneratedValue
     private long id;
 
-    @OneToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
     private CandidateEntity candidate;
 
     @ManyToOne(optional = false)

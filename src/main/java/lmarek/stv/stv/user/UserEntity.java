@@ -3,6 +3,7 @@ package lmarek.stv.stv.user;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users", indexes = @Index(name = "find_by_email", columnList = "email", unique = true))
@@ -11,12 +12,15 @@ public class UserEntity {
 
     @Id
     @GeneratedValue
-    long id;
+    private long id;
 
     @Column(nullable = false)
-    String email;
+    private String email;
 
     @Column(nullable = false)
-    String password;
+    private String password;
+
+    @ManyToMany
+    private List<AuthorizationEntity> authorizations;
 
 }
