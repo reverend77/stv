@@ -10,10 +10,9 @@ import java.util.List;
 @Table(name = "voters")
 @Data
 public class VoterEntity {
+    @OneToMany(mappedBy = "voter")
+    final List<VoteEntity> votes;
     @Id
     @GeneratedValue
     private long id;
-
-    @OneToMany(mappedBy = "voter")
-    final List<VoteEntity> votes;
 }
