@@ -1,6 +1,7 @@
 package lmarek.stv.stv.election;
 
 import lmarek.stv.stv.user.PrivilegeEntity;
+import lmarek.stv.stv.user.RoleEntity;
 import lmarek.stv.stv.user.UserEntity;
 import lmarek.stv.stv.user.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,9 +13,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -41,9 +45,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     private UserDetails convertToUserDetails(UserEntity userEntity){
-        final List<GrantedAuthority> privileges = userEntity.getPrivileges()
+        final Collection<GrantedAuthority> privileges = userEntity.getRoles()
                 .stream()
+                .flatMap(role -> role.getPrivileges().stream())
                 .map(PrivilegeEntity::getName)
+                .distinct()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
         return new User(userEntity.getEmail(), userEntity.getPassword(), privileges);

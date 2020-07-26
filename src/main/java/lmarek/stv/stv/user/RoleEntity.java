@@ -6,10 +6,9 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "privileges", indexes = @Index(name = "find_privilege_by_name", columnList = "name", unique = true))
+@Table(name = "roles", indexes = @Index(name = "find_role_by_name", columnList = "name", unique = true))
 @Data
-public class PrivilegeEntity {
-
+public class RoleEntity {
     @Id
     @GeneratedValue
     private long id;
@@ -18,6 +17,6 @@ public class PrivilegeEntity {
     private String name;
 
     @ManyToMany
-    private List<RoleEntity> roles;
+    private List<PrivilegeEntity> privileges;
 
 }
