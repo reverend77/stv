@@ -21,6 +21,6 @@ public class UserEntity {
     private String password;
 
     @ManyToMany
-    private List<AuthorizationEntity> authorizations;
+    private List<PrivilegeEntity> privileges;
 
 }

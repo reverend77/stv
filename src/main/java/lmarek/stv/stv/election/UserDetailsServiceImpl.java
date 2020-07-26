@@ -1,9 +1,8 @@
 package lmarek.stv.stv.election;
 
-import lmarek.stv.stv.user.AuthorizationEntity;
+import lmarek.stv.stv.user.PrivilegeEntity;
 import lmarek.stv.stv.user.UserEntity;
 import lmarek.stv.stv.user.UserRepository;
-import org.springframework.security.config.annotation.authentication.configurers.provisioning.UserDetailsManagerConfigurer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -13,7 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,11 +41,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     private UserDetails convertToUserDetails(UserEntity userEntity){
-        final List<GrantedAuthority> authorizations = userEntity.getAuthorizations()
+        final List<GrantedAuthority> privileges = userEntity.getPrivileges()
                 .stream()
-                .map(AuthorizationEntity::getName)
+                .map(PrivilegeEntity::getName)
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
-        return new User(userEntity.getEmail(), userEntity.getPassword(), authorizations);
+        return new User(userEntity.getEmail(), userEntity.getPassword(), privileges);
     }
 }
