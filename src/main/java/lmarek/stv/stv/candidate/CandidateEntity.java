@@ -18,7 +18,4 @@ public class CandidateEntity {
 
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     private ElectionEntity election;
-
-    protected CandidateEntity() {
-    }
 }
