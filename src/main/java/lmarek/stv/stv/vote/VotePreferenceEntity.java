@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "VOTE_COUNT")
+@Table(name = "votes_preferences")
 @Data
 public class VotePreferenceEntity {
 
@@ -14,11 +14,12 @@ public class VotePreferenceEntity {
     @GeneratedValue
     private long id;
 
-    @OneToOne
+    @OneToOne(optional = false)
     private CandidateEntity candidate;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private VoteEntity vote;
 
+    @Column(nullable = false)
     private long rank;
 }

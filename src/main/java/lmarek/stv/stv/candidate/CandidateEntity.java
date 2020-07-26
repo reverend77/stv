@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "CANDIDATE")
+@Table(name = "candidates")
 @Data
 public class CandidateEntity {
 
@@ -14,6 +14,7 @@ public class CandidateEntity {
     @GeneratedValue
     private long id;
 
+    @Column(nullable = false)
     private String description;
 
     @ManyToOne(cascade = CascadeType.ALL, optional = false)

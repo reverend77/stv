@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "VOTE")
+@Table(name = "votes")
 public class VoteEntity {
     @Id
     @GeneratedValue
